@@ -6,51 +6,52 @@
       <stop offset="100%" stop-color="#0284c7" />
     </linearGradient>
     <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="0%" stop-color="#fde047" />
+      <stop offset="50%" stop-color="#fbbf24" />
       <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
     <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-opacity="0.3" />
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.35" />
     </filter>
   </defs>
 
-  <!-- Background with rounded corners -->
-  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <!-- Full-bleed background for mobile OS clipping (iOS & Android squircle/circle) -->
+  <rect width="512" height="512" fill="url(#bgGrad)" />
 
-  <!-- Decorative subtle tech ring -->
-  <circle cx="256" cy="256" r="210" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-dasharray="12 8" />
+  <!-- Subtle aesthetic geometric ring -->
+  <circle cx="256" cy="256" r="224" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-dasharray="14 10" />
 
-  <!-- Book & Sparkle Graphic -->
+  <!-- Central Graphic: Open Book of Knowledge -->
   <g filter="url(#shadow)">
-    <!-- Book Base / Pages -->
-    <path d="M256 180 C210 140, 130 145, 96 160 C87 164, 80 173, 80 184 L80 340 C80 353, 93 363, 106 359 C138 348, 208 344, 256 380 C304 344, 374 348, 406 359 C419 363, 432 353, 432 340 L432 184 C432 173, 425 164, 416 160 C382 145, 302 140, 256 180 Z" fill="#ffffff" />
+    <!-- Book Wings -->
+    <path d="M256 186 C210 146, 126 150, 92 166 C83 170, 76 179, 76 190 L76 348 C76 361, 89 371, 102 367 C134 356, 206 352, 256 388 C306 352, 378 356, 410 367 C423 371, 436 361, 436 348 L436 190 C436 179, 429 170, 420 166 C386 150, 302 146, 256 186 Z" fill="#ffffff" />
     
     <!-- Spine divider -->
-    <path d="M256 180 L256 380" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round" />
+    <path d="M256 186 L256 388" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round" />
 
-    <!-- Left Page Lines -->
-    <path d="M120 215 L224 215 M120 250 L224 250 M120 285 L190 285" stroke="#94a3b8" stroke-width="6" stroke-linecap="round" />
+    <!-- Left Page Texture Lines -->
+    <path d="M116 220 L226 220 M116 256 L226 256 M116 292 L192 292" stroke="#94a3b8" stroke-width="6.5" stroke-linecap="round" />
     
-    <!-- Right Page Lines -->
-    <path d="M288 215 L392 215 M288 250 L392 250 M288 285 L358 285" stroke="#94a3b8" stroke-width="6" stroke-linecap="round" />
+    <!-- Right Page Texture Lines -->
+    <path d="M286 220 L396 220 M286 256 L396 256 M286 292 L362 292" stroke="#94a3b8" stroke-width="6.5" stroke-linecap="round" />
   </g>
 
-  <!-- AI Sparkle / Star (Gold) -->
-  <g transform="translate(256, 116)" filter="url(#shadow)">
-    <path d="M0 -42 C3 -14, 14 -3, 42 0 C14 3, 3 14, 0 42 C-3 14, -14 3, -42 0 C-14 -3, -3 -14, 0 -42 Z" fill="url(#goldGrad)" />
-    <circle cx="0" cy="0" r="6" fill="#ffffff" />
+  <!-- AI Golden Sparkle Star -->
+  <g transform="translate(256, 118)" filter="url(#shadow)">
+    <path d="M0 -46 C3.5 -16, 16 -3.5, 46 0 C16 3.5, 3.5 16, 0 46 C-3.5 16, -16 3.5, -46 0 C-16 -3.5, -3.5 -16, 0 -46 Z" fill="url(#goldGrad)" />
+    <circle cx="0" cy="0" r="7" fill="#ffffff" />
   </g>
 
   <!-- Small AI Sparkle Right -->
-  <g transform="translate(390, 130)">
-    <path d="M0 -22 C1.5 -7, 7 -1.5, 22 0 C7 1.5, 1.5 7, 0 22 C-1.5 7, -7 1.5, -22 0 C-7 -1.5, -1.5 -7, 0 -22 Z" fill="#38bdf8" />
+  <g transform="translate(398, 130)">
+    <path d="M0 -22 C1.8 -7, 7 -1.8, 22 0 C7 1.8, 1.8 7, 0 22 C-1.8 7, -7 1.8, -22 0 C-7 -1.8, -1.8 -7, 0 -22 Z" fill="#7dd3fc" />
   </g>
 
-  <!-- Ribbon Bookmark (Red & White Indonesian flag touch) -->
-  <path d="M246 180 L246 410 L256 398 L266 410 L266 180 Z" fill="#ef4444" opacity="0.9" />
-  <path d="M256 180 L256 410 L266 410 L266 180 Z" fill="#f87171" opacity="0.9" />
+  <!-- Ribbon Bookmark (Merah Putih Indonesia) -->
+  <path d="M246 186 L246 414 L256 402 L266 414 L266 186 Z" fill="#ef4444" />
+  <path d="M256 186 L256 414 L266 414 L266 186 Z" fill="#f87171" />
 
-  <!-- Badge at Bottom: KURIKULUM MERDEKA -->
-  <rect x="136" y="415" width="240" height="42" rx="21" fill="rgba(15, 23, 42, 0.75)" />
-  <text x="256" y="442" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" text-anchor="middle" letter-spacing="2">MODUL AJAR AI</text>
+  <!-- Badge at Bottom: MODUL AJAR AI -->
+  <rect x="126" y="420" width="260" height="46" rx="23" fill="#0f172a" />
+  <text x="256" y="450" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="900" text-anchor="middle" letter-spacing="2.5">MODUL AJAR AI</text>
 </svg>

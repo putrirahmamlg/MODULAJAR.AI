@@ -1,13 +1,16 @@
-const CACHE_NAME = 'modulajar-ai-v1';
+const CACHE_NAME = 'modulajar-ai-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/public/manifest.webmanifest',
+  '/manifest.webmanifest',
+  '/manifest.json',
   '/icon.svg',
   '/icon-192.png',
   '/icon-512.png',
   '/icon-maskable.png',
-  '/apple-touch-icon.png'
+  '/apple-touch-icon.png',
+  '/apple-touch-icon-152x152.png',
+  '/favicon-32x32.png'
 ];
 
 self.addEventListener('install', (event) => {

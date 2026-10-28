@@ -10,20 +10,33 @@
     <meta property="og:title" content="ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka" />
     <meta property="og:description" content="Aplikasi PWA cerdas untuk Guru Indonesia menghasilkan Modul Ajar Kurikulum Merdeka lengkap, terstruktur, siap cetak & unduh Word dengan bantuan Gemini AI." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon-512.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka" />
     <meta name="twitter:description" content="Generator Modul Ajar Kurikulum Merdeka instan berbasis AI untuk Guru Indonesia." />
+    <meta name="twitter:image" content="/icon-512.png" />
 
-    <!-- PWA & Mobile Web Capabilities -->
+    <!-- Web App Manifest for Android / Desktop PWA -->
     <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#2563eb" />
     <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- iOS Safari "Add to Home Screen" Icons & Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="ModulAjarAI" />
+    <meta name="apple-mobile-web-app-title" content="ModulAjar.AI" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+
+    <!-- Standard Favicons -->
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +47,7 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Service Worker Registration for PWA -->
+    <!-- Service Worker Registration for PWA & Offline Support -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
