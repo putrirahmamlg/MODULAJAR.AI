@@ -1,0 +1,6 @@
+{
+  "name": "ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka",
+  "description": "Aplikasi PWA cerdas untuk Guru Indonesia menghasilkan Modul Ajar Kurikulum Merdeka lengkap, terstruktur, siap cetak & unduh Word dengan bantuan Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

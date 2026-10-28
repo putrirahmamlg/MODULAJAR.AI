@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka</title>
+    <meta name="description" content="Aplikasi PWA cerdas untuk Guru Indonesia menghasilkan Modul Ajar Kurikulum Merdeka lengkap, terstruktur, siap cetak & unduh Word dengan bantuan Gemini AI." />
+    
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka" />
+    <meta property="og:description" content="Aplikasi PWA cerdas untuk Guru Indonesia menghasilkan Modul Ajar Kurikulum Merdeka lengkap, terstruktur, siap cetak & unduh Word dengan bantuan Gemini AI." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ModulAjar.AI - Generator Modul Ajar Kurikulum Merdeka" />
+    <meta name="twitter:description" content="Generator Modul Ajar Kurikulum Merdeka instan berbasis AI untuk Guru Indonesia." />
+
+    <!-- PWA & Mobile Web Capabilities -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ModulAjarAI" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white font-['Plus_Jakarta_Sans',sans-serif]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Service Worker Registration for PWA -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('ModulAjar.AI ServiceWorker registered: ', registration.scope);
+            })
+            .catch((error) => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Decorative subtle tech ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-dasharray="12 8" />
+
+  <!-- Book & Sparkle Graphic -->
+  <g filter="url(#shadow)">
+    <!-- Book Base / Pages -->
+    <path d="M256 180 C210 140, 130 145, 96 160 C87 164, 80 173, 80 184 L80 340 C80 353, 93 363, 106 359 C138 348, 208 344, 256 380 C304 344, 374 348, 406 359 C419 363, 432 353, 432 340 L432 184 C432 173, 425 164, 416 160 C382 145, 302 140, 256 180 Z" fill="#ffffff" />
+    
+    <!-- Spine divider -->
+    <path d="M256 180 L256 380" stroke="#cbd5e1" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Left Page Lines -->
+    <path d="M120 215 L224 215 M120 250 L224 250 M120 285 L190 285" stroke="#94a3b8" stroke-width="6" stroke-linecap="round" />
+    
+    <!-- Right Page Lines -->
+    <path d="M288 215 L392 215 M288 250 L392 250 M288 285 L358 285" stroke="#94a3b8" stroke-width="6" stroke-linecap="round" />
+  </g>
+
+  <!-- AI Sparkle / Star (Gold) -->
+  <g transform="translate(256, 116)" filter="url(#shadow)">
+    <path d="M0 -42 C3 -14, 14 -3, 42 0 C14 3, 3 14, 0 42 C-3 14, -14 3, -42 0 C-14 -3, -3 -14, 0 -42 Z" fill="url(#goldGrad)" />
+    <circle cx="0" cy="0" r="6" fill="#ffffff" />
+  </g>
+
+  <!-- Small AI Sparkle Right -->
+  <g transform="translate(390, 130)">
+    <path d="M0 -22 C1.5 -7, 7 -1.5, 22 0 C7 1.5, 1.5 7, 0 22 C-1.5 7, -7 1.5, -22 0 C-7 -1.5, -1.5 -7, 0 -22 Z" fill="#38bdf8" />
+  </g>
+
+  <!-- Ribbon Bookmark (Red & White Indonesian flag touch) -->
+  <path d="M246 180 L246 410 L256 398 L266 410 L266 180 Z" fill="#ef4444" opacity="0.9" />
+  <path d="M256 180 L256 410 L266 410 L266 180 Z" fill="#f87171" opacity="0.9" />
+
+  <!-- Badge at Bottom: KURIKULUM MERDEKA -->
+  <rect x="136" y="415" width="240" height="42" rx="21" fill="rgba(15, 23, 42, 0.75)" />
+  <text x="256" y="442" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="800" text-anchor="middle" letter-spacing="2">MODUL AJAR AI</text>
+</svg>
