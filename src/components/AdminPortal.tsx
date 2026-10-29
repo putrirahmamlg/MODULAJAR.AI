@@ -25,12 +25,14 @@ interface AdminPortalProps {
   isOpen: boolean;
   onClose: () => void;
   onShowToast: (msg: string) => void;
+  onRevokeOwnerDevice?: () => void;
 }
 
 export const AdminPortal: React.FC<AdminPortalProps> = ({
   isOpen,
   onClose,
   onShowToast,
+  onRevokeOwnerDevice,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pinInput, setPinInput] = useState('');
@@ -573,9 +575,24 @@ Jika membutuhkan bantuan, jangan ragu untuk menghubungi kami kembali. Selamat me
                   </form>
                 )}
 
-                <span className="text-[11px] text-slate-400">
-                  Data admin tersimpan 100% aman di peramban lokal Anda.
-                </span>
+                <div className="flex items-center gap-3">
+                  {onRevokeOwnerDevice && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (window.confirm('Kunci dan sembunyikan mode pemilik dari perangkat ini? (Untuk membuka kembali nanti, ketuk logo ModulAjar 5 kali atau gunakan link rahasia).')) {
+                          onRevokeOwnerDevice();
+                        }
+                      }}
+                      className="text-[11px] text-rose-500 hover:text-rose-700 font-semibold cursor-pointer underline"
+                    >
+                      Kunci & Sembunyikan dari Perangkat Ini
+                    </button>
+                  )}
+                  <span className="text-[11px] text-slate-400">
+                    Data tersimpan aman di peramban lokal Anda.
+                  </span>
+                </div>
               </div>
             </>
           )}

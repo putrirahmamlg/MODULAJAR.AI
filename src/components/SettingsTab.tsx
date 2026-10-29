@@ -22,6 +22,7 @@ interface SettingsTabProps {
   onResetLicense: () => void;
   onClearArchives: () => void;
   onOpenAdminPortal?: () => void;
+  isOwnerDevice?: boolean;
 }
 
 export const SettingsTab: React.FC<SettingsTabProps> = ({
@@ -31,7 +32,8 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
   onOpenLicenseModal,
   onResetLicense,
   onClearArchives,
-  onOpenAdminPortal
+  onOpenAdminPortal,
+  isOwnerDevice
 }) => {
   const [formData, setFormData] = useState<TeacherProfile>({ ...profile });
   const [savedSuccess, setSavedSuccess] = useState(false);
@@ -259,30 +261,32 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
         </div>
       </div>
 
-      {/* Card Khusus: Portal Admin Penjual (PIN Protected) */}
-      <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-blue-600 text-white text-xs">
-              <Key className="w-3.5 h-3.5" />
-            </span>
-            <h4 className="text-sm font-bold">Portal Admin & Generator Lisensi</h4>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-slate-950 uppercase">
-              Khusus Pemilik
-            </span>
+      {/* Card Khusus: Portal Admin Penjual (HANYA MUNCUL DI PERANGKAT PEMILIK) */}
+      {isOwnerDevice && (
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 text-white shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 rounded-lg bg-blue-600 text-white text-xs">
+                <Key className="w-3.5 h-3.5" />
+              </span>
+              <h4 className="text-sm font-bold">Portal Admin & Generator Lisensi</h4>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-slate-950 uppercase">
+                Khusus Pemilik
+              </span>
+            </div>
+            <p className="text-xs text-slate-300 mt-1 max-w-md">
+              Punya pembeli baru via WhatsApp? Buka portal ini untuk menerbitkan lisensi unik dan menyalin draf pesan WhatsApp resmi siap kirim.
+            </p>
           </div>
-          <p className="text-xs text-slate-300 mt-1 max-w-md">
-            Punya pembeli baru via WhatsApp? Buka portal ini untuk menerbitkan lisensi unik dan menyalin draf pesan WhatsApp resmi siap kirim.
-          </p>
+          <button
+            type="button"
+            onClick={onOpenAdminPortal}
+            className="self-start sm:self-auto px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition cursor-pointer shrink-0"
+          >
+            Buka Portal Admin
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={onOpenAdminPortal}
-          className="self-start sm:self-auto px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition cursor-pointer shrink-0"
-        >
-          Buka Portal Admin
-        </button>
-      </div>
+      )}
     </div>
   );
 };

@@ -33,6 +33,7 @@ export default function App() {
   const [licenseKey, setLicenseKey] = useState<string | null>(null);
   const [showLicenseModal, setShowLicenseModal] = useState(false);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
+  const [isOwnerDevice, setIsOwnerDevice] = useState(() => StorageService.isOwnerDevice());
 
   // App navigation
   const [activeTab, setActiveTab] = useState<'generator' | 'archive' | 'guide' | 'settings'>('generator');
@@ -63,9 +64,23 @@ export default function App() {
 
   // Check license on initial mount
   useEffect(() => {
-    // Check if opened with ?admin=true or #admin
-    if (window.location.search.includes('admin=true') || window.location.hash.includes('admin')) {
-      setShowAdminPortal(true);
+    // Secret URL detection: ?owner=true, ?secret=admin, or ?admin=owner
+    try {
+      const search = window.location.search;
+      if (
+        search.includes('owner=true') || 
+        search.includes('secret=admin') || 
+        search.includes('admin=owner') ||
+        window.location.hash.includes('owner')
+      ) {
+        StorageService.setOwnerDevice(true);
+        setIsOwnerDevice(true);
+        setShowAdminPortal(true);
+        // Clean URL immediately so the secret key disappears from the browser bar
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    } catch {
+      // ignore
     }
 
     const storedLicense = StorageService.getLicense();
@@ -193,6 +208,13 @@ export default function App() {
     }
   };
 
+  const handleSecretAdminTrigger = () => {
+    StorageService.setOwnerDevice(true);
+    setIsOwnerDevice(true);
+    setShowAdminPortal(true);
+    showToast('Mode Pemilik Berhasil Diaktifkan');
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
       {/* License Gate Modal */}
@@ -211,6 +233,7 @@ export default function App() {
         archiveCount={archives.length}
         licenseKey={licenseKey}
         onOpenLicenseModal={() => setShowLicenseModal(true)}
+        onSecretAdminTap={handleSecretAdminTrigger}
       />
 
       {/* Offline Toast Banner */}
@@ -342,18 +365,25 @@ export default function App() {
             onResetLicense={handleResetLicense}
             onClearArchives={handleClearArchives}
             onOpenAdminPortal={() => setShowAdminPortal(true)}
+            isOwnerDevice={isOwnerDevice}
           />
         )}
       </main>
 
-      {/* Admin License Generator Portal (PIN Protected) */}
+      {/* Admin License Generator Portal (PIN Protected - Only Accessible by Owner) */}
       <AdminPortal
         isOpen={showAdminPortal}
         onClose={() => setShowAdminPortal(false)}
         onShowToast={showToast}
+        onRevokeOwnerDevice={() => {
+          StorageService.setOwnerDevice(false);
+          setIsOwnerDevice(false);
+          setShowAdminPortal(false);
+          showToast('Mode Pemilik telah dinonaktifkan.');
+        }}
       />
 
-      {/* Footer */}
+      {/* Clean Public Footer (Zero Admin Links) */}
       <footer className="mt-auto border-t border-slate-200/80 bg-white py-6 text-center text-xs text-slate-500 no-print">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -364,19 +394,9 @@ export default function App() {
             <span className="text-blue-600 font-medium">PWA Ready & Offline Friendly</span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <p className="text-[11px] text-slate-400">
-              Didedikasikan untuk kemajuan Guru & Pendidikan Indonesia.
-            </p>
-            <button
-              onClick={() => setShowAdminPortal(true)}
-              className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
-              title="Akses Portal Pemilik / Admin"
-            >
-              <Lock className="w-3 h-3 text-slate-400" />
-              <span>Admin</span>
-            </button>
-          </div>
+          <p className="text-[11px] text-slate-400">
+            Didedikasikan untuk kemajuan Guru & Pendidikan Indonesia.
+          </p>
         </div>
       </footer>
     </div>

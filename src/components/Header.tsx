@@ -20,6 +20,7 @@ interface HeaderProps {
   archiveCount: number;
   licenseKey: string | null;
   onOpenLicenseModal: () => void;
+  onSecretAdminTap?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -28,9 +29,29 @@ export const Header: React.FC<HeaderProps> = ({
   archiveCount,
   licenseKey,
   onOpenLicenseModal,
+  onSecretAdminTap,
 }) => {
   const isOnline = useOnlineStatus();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [tapCount, setTapCount] = useState(0);
+  const [lastTapTime, setLastTapTime] = useState(0);
+
+  const handleLogoClick = () => {
+    handleTabClick('generator');
+    const now = Date.now();
+    if (now - lastTapTime < 2500) {
+      const nextCount = tapCount + 1;
+      if (nextCount >= 5) {
+        if (onSecretAdminTap) onSecretAdminTap();
+        setTapCount(0);
+      } else {
+        setTapCount(nextCount);
+      }
+    } else {
+      setTapCount(1);
+    }
+    setLastTapTime(now);
+  };
 
   const navItems = [
     {
@@ -69,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => handleTabClick('generator')}
+              onClick={handleLogoClick}
               className="flex items-center gap-2.5 text-left focus:outline-none group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform duration-200">

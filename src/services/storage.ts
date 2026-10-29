@@ -274,6 +274,26 @@ export const StorageService = {
   },
 
   // Admin Portal & License Generator Methods
+  isOwnerDevice(): boolean {
+    try {
+      return localStorage.getItem('modulajar_is_owner_device') === 'true';
+    } catch {
+      return false;
+    }
+  },
+
+  setOwnerDevice(val: boolean): void {
+    try {
+      if (val) {
+        localStorage.setItem('modulajar_is_owner_device', 'true');
+      } else {
+        localStorage.removeItem('modulajar_is_owner_device');
+      }
+    } catch {
+      // ignore
+    }
+  },
+
   getAdminPin(): string {
     try {
       return localStorage.getItem('modulajar_admin_pin') || '2025';
